@@ -1,0 +1,13 @@
+[ignore]
+
+[include]
+
+[libs]
+flow-typed
+node_modules/flow-inlinestyle/index.js
+
+[lints]
+
+[options]
+
+[strict]
