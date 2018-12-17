@@ -1,12 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/app';
-import * as serviceWorker from './serviceWorker';
+// @flow
+import * as React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, applyMiddleware, compose } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import { Provider } from 'react-redux'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './components/app'
+import reducer from './redux'
+import watcherSaga from './redux/sagas'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// create the saga middleware
+const sagaMiddleware: Function = createSagaMiddleware()
+
+// create a redux store with our reducer above and middleware
+const store: Object = createStore(reducer, compose(applyMiddleware(sagaMiddleware)))
+
+// run the saga
+sagaMiddleware.run(watcherSaga)
+
+const element: any = document.getElementById('root')
+const markup: React$Element<*> = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
+
+ReactDOM.render(markup, element)
