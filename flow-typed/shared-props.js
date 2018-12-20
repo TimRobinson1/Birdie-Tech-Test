@@ -2,7 +2,15 @@ declare type IconProps = {
   className: string
 }
 
-declare type IconNames = 'chevron' | 'github' | 'warning' | 'info'
+type NotificationType = {
+  type: 'error' | 'info',
+  message: string
+}
+
+type TableHeaderData = {
+  label: string,
+  key: string
+}
 
 type TableRowData = {
   [key: string]: string,
@@ -26,3 +34,5 @@ type columnData = {
   rows: Array<TableRowData>,
   omittedResultCount: number
 }
+
+declare type IconNames = 'chevron' | 'github' | 'warning' | 'info'

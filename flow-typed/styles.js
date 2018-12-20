@@ -13,3 +13,16 @@ declare type Styles = Style | Array<Styles>
 declare type StyleSheetType = {
   [key: string]: Styles
 }
+
+declare type mergeStyleSheetsFunction = (any, any) => StyleSheetType
+
+declare type TableStylesType = {
+  table?: Styles,
+  tableHead?: Styles,
+  tableHeaderRow?: Styles,
+  tableHeaderNumber?: Styles,
+  tableHeader?: Styles,
+  tableBody?: Styles,
+  tableRow?: Styles,
+  tableRowNumber?: Styles
+}
