@@ -1,5 +1,16 @@
 declare type ID = string | number
 
+declare type EventObject = {
+  preventDefault: (void) => void,
+  stopPropagation: (void) => void,
+  target: {
+    value: string
+  }
+}
+
+declare type noopFunction = (any) => void
+declare type onEventFunction = (EventObject) => void
+
 declare type State = {
   loading: boolean,
   statisticsData: Array<TableRowData>,
