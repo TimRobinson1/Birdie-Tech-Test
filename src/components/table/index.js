@@ -27,6 +27,9 @@ const Table = ({
     <table id={id} className={css(styles.table)}>
       <thead className={css(styles.tableHead)}>
         <tr className={css(styles.tableHeaderRow)}>
+          <th className={css(styles.tableHeaderNumber)}>
+            #
+          </th>
           {headers.map((header: TableHeaderData): React.Node => (
             <th className={css(styles.tableHeader)} key={`head-${header.key}`}>
               {header.label}
@@ -41,6 +44,13 @@ const Table = ({
             className={css(styles.tableRow)}
             key={`table-row-${index}`}
           >
+            <td
+              id='table-row-number'
+              data-label='#'
+              className={css(styles.tableRowNumber)}
+            >
+              {index + 1}
+            </td>
             {headers.map((header: TableHeaderData): React.Node => (
               // Map column data to the appropriate header to display
               <td
