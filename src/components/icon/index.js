@@ -3,10 +3,16 @@
 import * as React from 'react'
 import styles from './style.css.js'
 import { css } from '../../lib/styles'
+import ChevronIcon from './svgs/chevron'
 import GithubIcon from './svgs/github'
+import WarningIcon from './svgs/warning'
+import InfoIcon from './svgs/info'
 
 type Icons = {
-  github: React.ComponentType<IconProps>
+  chevron: React.ComponentType<IconProps>,
+  github: React.ComponentType<IconProps>,
+  warning: React.ComponentType<IconProps>,
+  info: React.ComponentType<IconProps>
 }
 
 type IconComponentProps = {
@@ -15,7 +21,10 @@ type IconComponentProps = {
 }
 
 const icons: Icons = {
-  github: GithubIcon
+  chevron: ChevronIcon,
+  github: GithubIcon,
+  warning: WarningIcon,
+  info: InfoIcon
 }
 
 const Icon = (props: IconComponentProps): React.Node => {
