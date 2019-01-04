@@ -1,4 +1,4 @@
-/* global columnData TableRowData */
+/* global columnData */
 // @flow
 import sqlDB from '../index'
 

@@ -1,4 +1,4 @@
-/* global */
+/* global TableColumns TableRowData columnData */
 // @flow
 import '@babel/polyfill'
 
