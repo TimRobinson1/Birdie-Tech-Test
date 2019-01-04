@@ -46,5 +46,32 @@ export default StyleSheet.create({
     height: sizes.larger,
     borderColor: colors.darkGrey,
     borderBottomColor: 'transparent'
+  },
+  table: {
+    borderRadius: utilities.borderRadius,
+    overflow: 'hidden'
+  },
+  tableRow: {
+    borderRadius: utilities.borderRadius,
+    overflow: 'hidden',
+    ':nth-child(odd)': {
+      backgroundColor: colors.secondary
+    },
+    [breakpoints.primary]: {
+      backgroundColor: 'inherit',
+      ':nth-child(odd)': {
+        backgroundColor: 'inherit'
+      }
+    }
+  },
+  tableHeaderRow: {
+    backgroundColor: colors.primary,
+    color: colors.white,
+    border: 'none'
+  },
+  tableRowNumber: {
+    [breakpoints.primary]: {
+      backgroundColor: colors.secondary
+    }
   }
 })

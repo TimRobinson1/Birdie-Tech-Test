@@ -1,4 +1,4 @@
-/* global EventObject */
+/* global EventObject TableHeaderData TableColumns */
 // @flow
 import * as React from 'react'
 import capitalise from '../../lib/capitalise'
@@ -11,7 +11,9 @@ import { css } from '../../lib/styles'
 type MainProps = {
   field: string,
   columns: TableColumns,
-  omittedResultCount: number
+  omittedResultCount: number,
+  statisticsData: Array<TableRowData>,
+  fetchColumnStatistics: (string) => void
 }
 
 const TableStyleSheet: TableStylesType = {
@@ -22,6 +24,10 @@ const TableStyleSheet: TableStylesType = {
 }
 
 class Main extends React.Component<MainProps> {
+  onChangeColumn = (event: EventObject): void => {
+    event.stopPropagation()
+    this.props.fetchColumnStatistics(event.target.value)
+  }
 
   render (): React.Node {
     const {
@@ -30,6 +36,21 @@ class Main extends React.Component<MainProps> {
       field,
       columns
     } = this.props
+
+    const tableHeaders: Array<TableHeaderData> = [
+      {
+        label: capitalise(field),
+        key: field
+      },
+      {
+        label: 'Count',
+        key: 'count'
+      },
+      {
+        label: 'Average age',
+        key: 'averageAge'
+      }
+    ]
 
     return (
       <main className={css(styles.pageContainer)}>
@@ -41,6 +62,7 @@ class Main extends React.Component<MainProps> {
             <Select
               id='select-column'
               value={capitalise(field)}
+              onChange={this.onChangeColumn}
               styleSheet={{
                 selectContainer: styles.selectContainer
               }}
@@ -60,6 +82,14 @@ class Main extends React.Component<MainProps> {
             </Text>
           </div>
         </div>
+        {!!statisticsData.length && (
+          <Table
+            id='data-table'
+            headers={tableHeaders}
+            data={statisticsData}
+            styleSheet={TableStyleSheet}
+          />
+        )}
       </main>
     )
   }
