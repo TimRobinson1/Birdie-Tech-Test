@@ -21,10 +21,15 @@
     "redux-saga": "^0.16.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node dist/index.js",
+    "dev": "npm-run-all -p dev-server client",
+    "dev-server": "babel-node src/server/index.js",
+    "client": "react-scripts start",
+    "build": "react-scripts build && babel src/server -d dist",
+    "test": "ENVIRONMENT=test flow && npm run test:unit && npm-run-all -p -r dev test:automated",
+    "test:flow": "flow",
+    "test:unit": "ENVIRONMENT=test jest test/unit",
+    "test:automated": "ENVIRONMENT=test wait-on http://localhost:3000/healthcheck && jest test/automated"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +50,9 @@
     "@babel/preset-react": "^7.0.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16.3": "^1.4.1",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "npm-run-all": "^4.1.5",
+    "puppeteer": "^1.11.0",
+    "wait-on": "^3.2.0"
   }
 }
