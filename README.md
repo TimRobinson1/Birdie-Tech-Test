@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Birdie Tech Test
+==============
+[View the live version](https://tim-robinson-birdie-12-18-cehhryequc.now.sh/)
 
-## Available Scripts
 
-In the project directory, you can run:
+Description
+-----------
+The goal of this exercise is to create a small web application that visualises database data.
 
-### `npm start`
+The application should allow a user to select a column from a set of data, then display, for each different value in this column, the number of lines with this value, and the "age" value average. Values are sorted by decreasing order and display only the first 100 values.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Specified requirements
+------------
+* Application must be a SPA (Single-Page Application), i.e. user must be able to change
+variable without reloading page.
+* If more than 100 different values, indicate the number of non-displayed values.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Quickstart guide
+---------------
+* Clone the repo to your local device, using `git clone https://github.com/TimRobinson1/Birdie-Tech-Test.git`
+* Navigate into the repo using `cd birdie-tech-test`
+* Run `npm install`
+* Create an `.env` file to suit your needs and connect your desired MySQL database, following the example of the provided `.env.example` file.
 
-### `npm test`
+### Local development
+To start up a local version for development, run `npm run dev`.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Running the tests
+* To run the unit tests, use `npm run test:unit`.
+* To run the automated browser tests, use `npm run test:automated`. **Note:** Depending on whether you want to use a local database for these tests or not, you may need to set up a MySQL database. You can get started [here](https://dev.mysql.com/doc/mysql-getting-started/en/).
+* To test for type errors, use `npm run test:flow`
+* Alternatively, if you wish to run all of these in sequence, simply use `npm run test`
 
-### `npm run build`
+### Production build
+If you wish to create and run a production build of the app, use `npm build && npm start`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Technologies used
+------------
+* [React](https://reactjs.org/) - for UI
+* [Redux](https://redux.js.org/) - for managing state
+* [Redux-Saga](https://redux-saga.js.org/) - for handling redux side-effects
+* [Flow](https://flow.org/) - for static typing
+* [Aphrodite](https://github.com/Khan/aphrodite) - for styling
+* [Knex](https://knexjs.org/) - for database interactions
+* [Jest](https://jestjs.io/) - for testing
+* [Puppeteer](https://pptr.dev/) - for automated browser testing
+* [Enzyme](https://airbnb.io/enzyme/) - for component testing
+* [Babel](https://babeljs.io/) - for code compilation
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Development Goals
+-------------
+* Clearly defined and reusable components.
+* Clean, well-tested and [grokkable](https://en.wikipedia.org/wiki/Grok) code.
+* Simple but effective page layout and styling that's robust enough to handle errors neatly.
+* Modular pieces of code that do one thing and do it well.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Development notes
+-------------
+My initial approach to this app was to plan out what I wanted the interface to look like and how the data would interact with it. To get up and running quickly, it made the most sense to start with [create-react-app](https://facebook.github.io/create-react-app/).
 
-### `npm run eject`
+Although I initially considered an implementation where the user would be able to toggle row numbers and choose how many rows get rendered, this introduced a time distraction and I ultimately decided not to add them as I wanted to stay focused on the main goal of the app.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I chose my tech primarily based on the tools that I thought would be very effective at what they do, and would help me create a clean, easy-to-understand codebase. **Aphrodite**, as an example, is a CSS-in-JS option, which I chose because I see it as meaning that less dev time is spent content-switching between two syntaxes, and that styles can be shared in a unified, intuitive way.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The app has been designed in a way that is intended to be expandable and effective at scale. Use of components such as `Text` as wrappers around common text types (`p`, `span`, `h1` etc.) means that it's simple to give them a scalable, single-source-of-truth design.
