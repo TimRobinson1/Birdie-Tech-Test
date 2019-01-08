@@ -12,7 +12,7 @@ const Navbar = (props: NavbarProps): React.Node => (
   <div className={css(styles.navbar)}>
     <div className={css(styles.navbarInnerContainer)}>
       {props.children}
-      <a title="View this app on Github" href='https://github.com'>
+      <a title="View this app on Github" href='https://github.com/TimRobinson1/Birdie-Tech-Test'>
         <Icon name='github' styles={styles.githubIcon} />
       </a>
     </div>
